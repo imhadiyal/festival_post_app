@@ -10,11 +10,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://media.istockphoto.com/id/1339303464/vector/happy-diwali-hindu-festival-banner-greeting-card-burning-diya-illustration-background-for.jpg?s=612x612&w=0&k=20&c=2e1R4zw3Ze-vt1e6jl9oWWe9fcElWmi1M9M382wwdu4=",
       "frame": [
-        '${imgurl} diwali1.png',
-        '${imgurl} diwali2.png',
-        '${imgurl} diwali3.png',
-        '${imgurl} diwali4.png',
-        '${imgurl} diwali5.png',
+        '${imgurl}diwali1.png',
+        '${imgurl}diwali2.png',
+        '${imgurl}diwali3.png',
+        '${imgurl}diwali4.png',
+        '${imgurl}diwali5.png',
       ],
       "quotes": [
         "दीपावली की हार्दिक शुभकामनाएं! आपके जीवन में खुशियां और उत्साह बना रहे।",
@@ -31,11 +31,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://i.pinimg.com/736x/78/42/58/78425894b7d95b69b5bd39cfc39b1c5f.jpg",
       "frame": [
-        '${imgurl} holi1.png',
-        '${imgurl} holi2.png',
-        '${imgurl} holi3.png',
-        '${imgurl} holi4.png',
-        '${imgurl} holi5.png',
+        '${imgurl}holi1.png',
+        '${imgurl}holi2.png',
+        '${imgurl}holi3.png',
+        '${imgurl}holi4.png',
+        '${imgurl}holi5.png',
       ],
       "quotes": [
         "होली के इस रंगीन त्योहार में आपके जीवन में खुशियां और रंग भरे!",
@@ -52,11 +52,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://www.aajsamaaj.com/wp-content/uploads/2022/01/Happy-Uttarayan-Quotes-Facebook-copy.jpg",
       "frame": [
-        '${imgurl} uttarayan1.png',
-        '${imgurl} uttarayan2.png',
-        '${imgurl} uttarayan3.png',
-        '${imgurl} uttarayan4.png',
-        '${imgurl} uttarayan5.png',
+        '${imgurl}uttarayan1.png',
+        '${imgurl}uttarayan2.png',
+        '${imgurl}uttarayan3.png',
+        '${imgurl}uttarayan4.png',
+        '${imgurl}uttarayan5.png',
       ],
       "quotes": [
         "मकर संक्रांति के इस पावन पर्व में आपको और आपके परिवार को बहुत-बहुत शुभकामनाएं।",
@@ -73,11 +73,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://i.pinimg.com/236x/71/21/48/712148c8410feff3e575ab44af56df3b.jpg",
       "frame": [
-        '${imgurl} navratri1.png',
-        '${imgurl} navratri2.png',
-        '${imgurl} navratri3.png',
-        '${imgurl} navratri4.png',
-        '${imgurl} navratri5.png',
+        '${imgurl}navratri1.png',
+        '${imgurl}navratri2.png',
+        '${imgurl}navratri3.png',
+        '${imgurl}navratri4.png',
+        '${imgurl}navratri5.png',
       ],
       "quotes": [
         "नवरात्रि के इस पावन पर्व में मां दुर्गा की कृपा आप पर बनी रहे।",
@@ -94,11 +94,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://images.thequint.com/thequint%2F2023-09%2Fd812b92e-5ae0-4e02-a203-0ebaaa2ca4c9%2Fganesh_chaturthi_vinayaka_chaturthi_god_ganesh_jpg_s_1024x1024_w_is_k_20_c_L89W9oAsKtqJJ6pL9d2S44bj4.jpg",
       "frame": [
-        '${imgurl} Ganesh Chaturthi1.png',
-        '${imgurl} Ganesh Chaturthi2.png',
-        '${imgurl} Ganesh Chaturthi3.png',
-        '${imgurl} Ganesh Chaturthi4.png',
-        '${imgurl} Ganesh Chaturthi5.png',
+        '${imgurl}Ganesh Chaturthi1.png',
+        '${imgurl}Ganesh Chaturthi2.png',
+        '${imgurl}Ganesh Chaturthi3.png',
+        '${imgurl}Ganesh Chaturthi4.png',
+        '${imgurl}Ganesh Chaturthi5.png',
       ],
       "quotes": [
         "गणेश चतुर्थी के इस पावन अवसर पर आपको और आपके परिवार को ढेरों शुभकामनाएं।",
@@ -115,11 +115,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://w0.peakpx.com/wallpaper/473/6/HD-wallpaper-raksha-bandhan-ke-happy-raksha-bandhan-thumbnail.jpg",
       "frame": [
-        '${imgurl} Raksha Bandhan1.png',
-        '${imgurl} Raksha Bandhan2.png',
-        '${imgurl} Raksha Bandhan3.png',
-        '${imgurl} Raksha Bandhan4.png',
-        '${imgurl} Raksha Bandhan5.png',
+        '${imgurl}Raksha Bandhan1.png',
+        '${imgurl}Raksha Bandhan2.png',
+        '${imgurl}Raksha Bandhan3.png',
+        '${imgurl}Raksha Bandhan4.png',
+        '${imgurl}Raksha Bandhan5.png',
       ],
       "quotes": [
         "रक्षाबंधन के पावन अवसर पर आपको और आपके भाई को ढेरों शुभकामनाएं।",
@@ -136,11 +136,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://static.vecteezy.com/system/resources/previews/016/804/364/original/illustration-of-hindu-religion-happy-maha-shivratri-maha-shivaratri-festival-vector.jpg",
       "frame": [
-        '${imgurl} Maha Shivaratri1.png',
-        '${imgurl} Maha Shivaratri2.png',
-        '${imgurl} Maha Shivaratri3.png',
-        '${imgurl} Maha Shivaratri4.png',
-        '${imgurl} Maha Shivaratri5.png',
+        '${imgurl}Maha Shivaratri1.png',
+        '${imgurl}Maha Shivaratri2.png',
+        '${imgurl}Maha Shivaratri3.png',
+        '${imgurl}Maha Shivaratri4.png',
+        '${imgurl}Maha Shivaratri5.png',
       ],
       "quotes": [
         "महा शिवरात्रि के पावन अवसर पर भगवान शिव की कृपा आप पर बनी रहे।",
@@ -157,11 +157,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://m.media-amazon.com/images/I/71CnlyxTLJL._AC_UF1000,1000_QL80_.jpg",
       "frame": [
-        '${imgurl} Janmashtami1.png',
-        '${imgurl} Janmashtami2.png',
-        '${imgurl} Janmashtami3.png',
-        '${imgurl} Janmashtami4.png',
-        '${imgurl} Janmashtami5.png',
+        '${imgurl}Janmashtami1.png',
+        '${imgurl}Janmashtami2.png',
+        '${imgurl}Janmashtami3.png',
+        '${imgurl}Janmashtami4.png',
+        '${imgurl}Janmashtami5.png',
       ],
       "quotes": [
         "जन्माष्टमी के पावन अवसर पर आपको और आपके परिवार को ढेरों शुभकामनाएं।",
@@ -178,11 +178,11 @@ Map<String, dynamic> allFestival = {
       "image":
           "https://t4.ftcdn.net/jpg/05/67/25/19/360_F_567251954_fv1O7TqBJYK5I5yIYcBjfGsukK04IGR9.jpg",
       "frame": [
-        '${imgurl} Ram Navami1.png',
-        '${imgurl} Ram Navami2.png',
-        '${imgurl} Ram Navami3.png',
-        '${imgurl} Ram Navami4.png',
-        '${imgurl} Ram Navami5.png',
+        '${imgurl}Ram Navami1.png',
+        '${imgurl}Ram Navami2.png',
+        '${imgurl}Ram Navami3.png',
+        '${imgurl}Ram Navami4.png',
+        '${imgurl}Ram Navami5.png',
       ],
       "quotes": [
         "राम नवमी के पावन अवसर पर आपको और आपके परिवार को बहुत-बहुत शुभकामनाएं।",
