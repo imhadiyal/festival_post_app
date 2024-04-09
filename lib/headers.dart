@@ -1,5 +1,26 @@
 export 'package:flutter/material.dart';
 export 'app.dart';
 export 'package:festival_post_app/routes/app_routes.dart';
-
+export 'package:festival_post_app/pages/details_page/details_page.dart';
 export 'package:festival_post_app/pages/home_page.dart';
+export 'dart:io';
+export 'dart:typed_data';
+export 'package:cyclop/cyclop.dart';
+export 'package:festival_post_app/headers.dart';
+export 'package:festival_post_app/modal/modal_class.dart';
+export 'package:festival_post_app/utils/Globals/globals.dart';
+export 'package:flutter/material.dart';
+export 'package:flutter/painting.dart';
+export 'package:flutter/rendering.dart';
+export 'package:flutter/services.dart';
+export 'package:flutter/widgets.dart';
+export 'package:google_fonts/google_fonts.dart';
+export 'package:image_gallery_saver/image_gallery_saver.dart';
+export 'package:image_picker/image_picker.dart';
+export 'package:path_provider/path_provider.dart';
+export 'package:share_extend/share_extend.dart';
+export 'package:carousel_slider/carousel_slider.dart';
+export 'package:festival_post_app/utils/data_utils.dart';
+
+export 'package:flutter/material.dart';
+export 'package:flutter/widgets.dart';

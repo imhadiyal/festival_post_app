@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:festival_post_app/headers.dart';
 
 class Globals {
@@ -12,7 +14,12 @@ class Globals {
   Color quoteTextColor = Colors.black;
   TextAlign quoteTextAlignment = TextAlign.center;
   double quotelettringSpacing = 1;
-
+  bool bold = false;
+  bool italic = false;
+  File? image;
+  bool img = false;
+  bool border = false;
+  String text = "";
   List<Color> allColors = [
     Colors.transparent,
     Colors.white,

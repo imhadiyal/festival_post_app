@@ -1,5 +1,4 @@
 import 'package:festival_post_app/headers.dart';
-import 'package:festival_post_app/pages/details_page/details_page.dart';
 
 class AppRoutes {
   AppRoutes._();

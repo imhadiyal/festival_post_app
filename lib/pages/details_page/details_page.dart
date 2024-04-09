@@ -1,19 +1,6 @@
-import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-import 'package:cyclop/cyclop.dart';
 import 'package:festival_post_app/headers.dart';
-import 'package:festival_post_app/modal/modal_class.dart';
-import 'package:festival_post_app/utils/Globals/globals.dart';
+import 'dart:ui' as ui;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:share_extend/share_extend.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
@@ -31,6 +18,7 @@ class _DetailPageState extends State<DetailPage> {
   GlobalKey colour = GlobalKey();
   GlobalKey Alige = GlobalKey();
   bool text = false;
+  late var myController = TextEditingController();
 
   Future<File> getFileFromWidget() async {
     RenderRepaintBoundary boundary =
@@ -55,6 +43,9 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     Globals.instance.reset();
+    myController.addListener(() {
+      myController.text;
+    });
     super.initState();
   }
 
@@ -73,6 +64,21 @@ class _DetailPageState extends State<DetailPage> {
             style: GoogleFonts.aladin(textStyle: const TextStyle(fontSize: 30)),
           ),
           actions: [
+            IconButton(
+              onPressed: () async {
+                ImagePicker picker = ImagePicker();
+
+                XFile? file = await picker.pickImage(
+                  source: ImageSource.gallery,
+                );
+
+                if (file != null) {
+                  Globals.instance.image = File(file.path);
+                  setState(() {});
+                }
+              },
+              icon: const Icon(Icons.image),
+            ),
             IconButton(
               onPressed: () {
                 showDialog(
@@ -119,7 +125,7 @@ class _DetailPageState extends State<DetailPage> {
                 );
               },
               icon: const Icon(Icons.share),
-            )
+            ),
           ],
         ),
         body: Padding(
@@ -129,395 +135,430 @@ class _DetailPageState extends State<DetailPage> {
             Expanded(
               child: RepaintBoundary(
                 key: widgetKey,
-                child: Container(
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(),
-                    image: DecorationImage(
-                      image: AssetImage(
-                        (selectedImage != null)
-                            ? selectedImage!
-                            : data.frame[0],
-                      ),
-                    ),
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          String text = "";
-
-                          return AlertDialog(
-                            title: const Text("Edit Quote"),
-                            content: TextFormField(
-                              initialValue: quote,
-                              maxLines: 3,
-                              onChanged: (val) => text = val,
+                child: Stack(
+                  children: [
+                    Container(
+                      width: size.width * 0.9,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(),
+                        image: DecorationImage(
+                            image: AssetImage(
+                              (selectedImage != null)
+                                  ? selectedImage!
+                                  : data.frame[0],
                             ),
-                            actions: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  quote = text;
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Save"),
-                              ),
-                              OutlinedButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Cancel"),
-                              ),
-                            ],
-                          );
+                            fit: BoxFit.cover),
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              String text = "";
+
+                              return AlertDialog(
+                                title: const Text("Edit Quote"),
+                                content: TextFormField(
+                                  initialValue: quote,
+                                  maxLines: 3,
+                                  onChanged: (val) => text = val,
+                                ),
+                                actions: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      quote = text;
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("Save"),
+                                  ),
+                                  OutlinedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("Cancel"),
+                                  ),
+                                ],
+                              );
+                            },
+                          ).then((value) => setState(() {}));
                         },
-                      ).then((value) => setState(() {}));
-                    },
-                    onPanUpdate: (DragUpdateDetails dragUpdateDetails) =>
-                        setState(() =>
-                            Globals.instance.offSet += dragUpdateDetails.delta),
-                    child: Transform.translate(
-                      offset: Globals.instance.offSet,
-                      child: Center(
-                        child: Text(
-                          quote,
-                          textAlign: Globals.instance.quoteTextAlignment,
-                          style: TextStyle(
-                            fontSize: Globals.instance.size,
-                            color: Globals.instance.quoteTextColor,
-                            letterSpacing:
-                                Globals.instance.quotelettringSpacing,
+                        onPanUpdate: (DragUpdateDetails dragUpdateDetails) =>
+                            setState(() => Globals.instance.offSet +=
+                                dragUpdateDetails.delta),
+                        child: Transform.translate(
+                          offset: Globals.instance.offSet,
+                          child: Center(
+                            child: Text(
+                              quote,
+                              textAlign: Globals.instance.quoteTextAlignment,
+                              style: TextStyle(
+                                fontSize: Globals.instance.size,
+                                color: Globals.instance.quoteTextColor,
+                                letterSpacing:
+                                    Globals.instance.quotelettringSpacing,
+                                fontWeight: Globals.instance.bold
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                                fontStyle: Globals.instance.italic
+                                    ? FontStyle.italic
+                                    : FontStyle.normal,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                    Visibility(
+                      visible: Globals.instance.border,
+                      child: Positioned(
+                        bottom: 1,
+                        child: Container(
+                          height: size.height * 0.085,
+                          width: size.width * 2,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              myController.text,
+                              style: const TextStyle(
+                                color: Colors.blue,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: Globals.instance.img,
+                      child: Positioned(
+                        bottom: 3,
+                        right: 1,
+                        child: SizedBox(
+                          height: size.height * 0.08,
+                          width: size.width * 0.2,
+                          child: CircleAvatar(
+                            foregroundImage: Globals.instance.image != null
+                                ? FileImage(Globals.instance.image!)
+                                : null,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            // OptionsSlide
-            // SingleChildScrollView(
-            //   scrollDirection: Axis.horizontal,
-            //   child: Row(
-            //     children: [
-            //       SizedBox(
-            //         width: size.width * 0.025,
-            //       ),
-            //       TextButton.icon(
-            //         onPressed: () =>
-            //             setState(() => Globals.instance.index = 0),
-            //         label: const Text(
-            //           "Frame",
-            //           style: TextStyle(color: Colors.black54),
-            //         ),
-            //         icon: const Icon(
-            //           Icons.filter_frames_outlined,
-            //           color: Colors.black54,
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         width: size.width * 0.025,
-            //       ),
-            //       TextButton.icon(
-            //         onPressed: () =>
-            //             setState(() => Globals.instance.index = 1),
-            //         label: const Text(
-            //           "Quote",
-            //           style: TextStyle(color: Colors.black54),
-            //         ),
-            //         icon: const Icon(
-            //           Icons.format_quote,
-            //           color: Colors.black54,
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         width: size.width * 0.025,
-            //       ),
-            //       TextButton.icon(
-            //         onPressed: () =>
-            //             setState(() => Globals.instance.index = 2),
-            //         label: const Text(
-            //           "Text",
-            //           style: TextStyle(color: Colors.black54),
-            //         ),
-            //         icon: const Icon(
-            //           Icons.text_increase,
-            //           color: Colors.black54,
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         width: size.width * 0.025,
-            //       ),
-            //       TextButton.icon(
-            //         onPressed: () =>
-            //             setState(() => Globals.instance.index = 3),
-            //         label: const Text(
-            //           "Colour",
-            //           style: TextStyle(
-            //             color: Colors.black54,
-            //           ),
-            //         ),
-            //         icon: const Icon(
-            //           Icons.color_lens_outlined,
-            //           color: Colors.black54,
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         width: size.width * 0.025,
-            //       ),
-            //     ],
-            //   ),
-            // ),
             SizedBox(
               height: size.height * 0.02,
             ),
 
             Expanded(
-                child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    // Frame
-                    child: Row(
-                      children: data.frame
-                          .map(
-                            (e) => GestureDetector(
-                              onTap: () {
-                                selectedImage = e;
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      // Frame
+                      child: Row(
+                        children: data.frame
+                            .map(
+                              (e) => GestureDetector(
+                                onTap: () {
+                                  selectedImage = e;
 
-                                i = data.frame.indexOf(e);
-                                setState(() {});
-                              },
-                              child: Container(
-                                height: size.height * 0.15,
-                                width: size.width * 0.25,
-                                margin: EdgeInsets.all(
-                                    (i == data.frame.indexOf(e)) ? 20 : 10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      offset: Offset(3, 3),
-                                      blurRadius: 10,
-                                      color: Colors.grey,
-                                    )
-                                  ],
-                                  border: Border.all(
-                                    color: (i == data.frame.indexOf(e))
-                                        ? Colors.transparent
-                                        : Colors.transparent,
-                                    width:
-                                        (i == data.frame.indexOf(e)) ? 10 : 2,
+                                  i = data.frame.indexOf(e);
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  height: size.height * 0.15,
+                                  width: size.width * 0.25,
+                                  margin: EdgeInsets.all(
+                                      (i == data.frame.indexOf(e)) ? 20 : 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        offset: Offset(3, 3),
+                                        blurRadius: 10,
+                                        color: Colors.grey,
+                                      )
+                                    ],
+                                    border: Border.all(
+                                      color: (i == data.frame.indexOf(e))
+                                          ? Colors.transparent
+                                          : Colors.transparent,
+                                      width:
+                                          (i == data.frame.indexOf(e)) ? 10 : 2,
+                                    ),
+                                    color: Colors.grey.shade200,
+                                    image: DecorationImage(
+                                      image: AssetImage(e),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
-                                  color: Colors.grey.shade200,
-                                  image: DecorationImage(
-                                    image: AssetImage(e),
-                                    fit: BoxFit.contain,
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.06,
+                      width: size.width * 1,
+                      // Quote
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => Center(
+                              child: SizedBox(
+                                width: size.width * 9,
+                                height: size.height * 0.4,
+                                child: Dialog(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ...data.quotes
+                                          .map(
+                                            (e) => Card(
+                                              elevation: 5,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  quote = e;
+                                                  setState(() {});
+                                                },
+                                                child: Container(
+                                                  margin: EdgeInsets.all(10),
+                                                  padding: EdgeInsets.all(5),
+                                                  height: size.height * 0.04,
+                                                  child: Text(
+                                                    e,
+                                                    style: const TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.black,
+                                                        overflow: TextOverflow
+                                                            .ellipsis),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                          )
-                          .toList(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.06,
-                    width: size.width * 1,
-                    // Quote
-                    child: ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => Center(
-                              child: SizedBox(
-                            width: size.width * 9,
-                            height: size.height * 0.4,
-                            child: Dialog(
-                              child: Column(
-                                children: [
-                                  ...data.quotes
-                                      .map(
-                                        (e) => Card(
-                                          elevation: 5,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              quote = e;
-                                              setState(() {});
-                                            },
-                                            child: Container(
-                                              margin: EdgeInsets.all(10),
-                                              padding: EdgeInsets.all(5),
-                                              height: size.height * 0.04,
-                                              child: Text(
-                                                e,
-                                                style: const TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
-                                ],
-                              ),
+                          );
+                          setState(() {});
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.green.shade500),
+                          foregroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                          textStyle: MaterialStateProperty.all(
+                            const TextStyle(
+                              fontSize: 20,
                             ),
-                          )),
-                        );
-                        setState(() {});
-                      },
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.green.shade500),
-                        foregroundColor:
-                            MaterialStateProperty.all(Colors.white),
-                        textStyle: MaterialStateProperty.all(
-                          const TextStyle(
-                            fontSize: 20,
                           ),
                         ),
+                        child: const Text("Random Quote"),
                       ),
-                      child: const Text("Random Quote"),
                     ),
-                  ),
-                  // TextProperty
-                  // FontSize
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Globals.instance.size += 3;
-                          setState(() {});
-                        },
-                        icon: const Icon(CupertinoIcons.plus_app),
-                      ),
-                      const Text(
-                        "Font Size: ",
-                        style: TextStyle(
-                          fontSize: 20,
+                    // TextProperty
+                    // FontSize
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    const Text(
+                      "Font Style:",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Slider(
+                            min: 14,
+                            max: 100,
+                            value: Globals.instance.size,
+                            onChanged: (val) {
+                              Globals.instance.size = val;
+                              setState(() {});
+                            }),
+                      ],
+                    ),
+                    // FontAlignment
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Globals.instance.quoteTextAlignment =
+                                TextAlign.left;
+                            setState(() {});
+                          },
+                          icon: const Icon(Icons.format_align_left),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Globals.instance.size -= 3;
-                          setState(() {});
-                        },
-                        icon: const Icon(CupertinoIcons.minus_rectangle),
-                      ),
-                    ],
-                  ),
-                  // FontAlignment
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Globals.instance.quoteTextAlignment = TextAlign.left;
-                          setState(() {});
-                        },
-                        icon: const Icon(Icons.format_align_left),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Globals.instance.quoteTextAlignment =
-                              TextAlign.center;
-                          setState(() {});
-                        },
-                        icon: const Icon(Icons.format_align_center),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Globals.instance.quoteTextAlignment = TextAlign.right;
-                          setState(() {});
-                        },
-                        icon: const Icon(Icons.format_align_right),
-                      ),
-                    ],
-                  ),
-                  // FontLetterSpacing
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Globals.instance.quotelettringSpacing += 1;
-                          setState(() {});
-                        },
-                        icon: const Icon(CupertinoIcons.plus_app),
-                      ),
-                      const Text(
-                        "Letter Spacing",
-                        style: TextStyle(
-                          fontSize: 20,
+                        IconButton(
+                          onPressed: () {
+                            Globals.instance.quoteTextAlignment =
+                                TextAlign.center;
+                            setState(() {});
+                          },
+                          icon: const Icon(Icons.format_align_center),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Globals.instance.quotelettringSpacing -= 1;
+                        IconButton(
+                          onPressed: () {
+                            Globals.instance.quoteTextAlignment =
+                                TextAlign.right;
+                            setState(() {});
+                          },
+                          icon: const Icon(Icons.format_align_right),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Globals.instance.bold = !Globals.instance.bold;
+                            setState(() {});
+                          },
+                          icon: Icon(CupertinoIcons.bold),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Globals.instance.italic = !Globals.instance.italic;
+                            setState(() {});
+                          },
+                          icon: Icon(CupertinoIcons.italic),
+                        ),
+                      ],
+                    ),
+                    // FontLetterSpacing
+                    const Text(
+                      "Letter Space:",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Slider(
+                        min: 0,
+                        max: 5,
+                        value: Globals.instance.quotelettringSpacing,
+                        onChanged: (val) {
+                          Globals.instance.quotelettringSpacing = val;
                           setState(() {});
-                        },
-                        icon: const Icon(CupertinoIcons.minus_rectangle),
-                      ),
-                    ],
-                  ),
-                  // Colour_Picker
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: Globals.instance.allColors
-                          .map(
-                            (e) => e == Colors.transparent
-                                ?
-                                // Colour_Picker
-                                CircleAvatar(
-                                    child: ColorButton(
-                                      key: colour,
-                                      config: const ColorPickerConfig(
-                                          enableLibrary: true,
-                                          enableOpacity: true,
-                                          enableEyePicker: true),
-                                      size: 32,
-                                      color: Globals.instance.quoteTextColor,
-                                      onColorChanged: (value) => setState(
-                                        () {
-                                          Globals.instance.quoteTextColor =
-                                              value;
-                                        },
+                        }),
+
+                    // Colour_Picker
+                    const Text(
+                      "Font Colour:",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: Globals.instance.allColors
+                            .map(
+                              (e) => e == Colors.transparent
+                                  ?
+                                  // Colour_Picker
+                                  CircleAvatar(
+                                      child: ColorButton(
+                                        key: colour,
+                                        config: const ColorPickerConfig(
+                                            enableLibrary: true,
+                                            enableOpacity: true,
+                                            enableEyePicker: true),
+                                        size: 32,
+                                        color: Globals.instance.quoteTextColor,
+                                        onColorChanged: (value) => setState(
+                                          () {
+                                            Globals.instance.quoteTextColor =
+                                                value;
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                : GestureDetector(
-                                    onTap: () {
-                                      Globals.instance.quoteTextColor = e;
-                                      setState(() {});
-                                    },
-                                    child: Container(
-                                      height: 60,
-                                      width: 60,
-                                      margin: const EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                        color: e,
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.all(
-                                          ui.Radius.circular(50),
+                                    )
+                                  : GestureDetector(
+                                      onTap: () {
+                                        Globals.instance.quoteTextColor = e;
+                                        setState(() {});
+                                      },
+                                      child: Container(
+                                        height: 60,
+                                        width: 60,
+                                        margin: const EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: e,
+                                          border: Border.all(),
+                                          borderRadius: const BorderRadius.all(
+                                            ui.Radius.circular(50),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                          )
-                          .toList(),
+                            )
+                            .toList(),
+                      ),
                     ),
-                  ),
-                ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Image",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        Switch(
+                          value: Globals.instance.img,
+                          onChanged: (val) {
+                            Globals.instance.img = val;
+                            setState(() {});
+                          },
+                        ),
+                      ],
+                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     const Text(
+                    //       "Border",
+                    //       style: TextStyle(
+                    //           fontSize: 16, fontWeight: FontWeight.bold),
+                    //     ),
+                    //     Switch(
+                    //       value: Globals.instance.border,
+                    //       onChanged: (val) {
+                    //         Globals.instance.border = val;
+                    //         setState(() {});
+                    //       },
+                    //     ),
+                    //   ],
+                    // ),
+                    // Visibility(
+                    //   visible: Globals.instance.border,
+                    //   child: TextFormField(
+                    //     onChanged: (val) {
+                    //       myController = val as TextEditingController;
+                    //       setState(() {});
+                    //     },
+                    //     controller: myController,
+                    //   ),
+                    // )
+                  ],
+                ),
               ),
-            )),
+            ),
           ]),
         ),
       ),
