@@ -36,8 +36,11 @@ Welcome to **Festival Post Maker**, your ultimate companion for creating stunnin
 
 ### Images
 
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/3ebe7d46-544f-4948-858e-039ee8e27376" width = "250">
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/69bb56a0-c4e2-48df-950e-33bd92bfdfbd" width = "250">
+
+
+
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/26263d78-b1a5-4d31-b851-c25cb92ebebf" width = "250">
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/01e94e44-a3ce-4d60-b8d6-243307758387" width = "250">
 <img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/e022b75c-8105-4eb0-b81c-9b0b2c32db76" width = "250">
 <img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/ca66f701-d867-45f6-bd92-ba2d81df4fef" width = "250">
 <img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/fc498915-c98f-4bbc-834e-d2c937e463da" width = "250">
