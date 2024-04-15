@@ -14,38 +14,30 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade200,
-        centerTitle: true,
-        title: const Text("FESTIVAL POST"),
+        title: const Text(
+          "READY TO POST",
+        ),
       ),
       backgroundColor: Colors.blue.shade100,
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.only(top: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            CarouselSlider(
-              items: festivalData.festivals
-                  .map(
-                    (e) => Container(
-                      height: size.height * 0.6,
-                      width: size.width * 0.9,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(e.image),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList(),
-              options: CarouselOptions(
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  aspectRatio: 15 / 9,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  viewportFraction: 0.8),
+            Container(
+              margin: EdgeInsets.only(bottom: 10),
+              height: size.height * 0.25,
+              width: size.width * 0.9,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                ),
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "https://www.tripbibo.com/blog/wp-content/uploads/2021/03/maxresdefault-2.jpg"),
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
             const SizedBox(
               height: 10,
@@ -58,6 +50,7 @@ class _HomePageState extends State<HomePage> {
                 //     childAspectRatio: 8 / 10,
                 //     crossAxisSpacing: 5,
                 //     mainAxisExtent: 200),
+
                 crossAxisCount: 2,
                 mainAxisSpacing: 5,
                 childAspectRatio: 8 / 10,
@@ -77,13 +70,14 @@ class _HomePageState extends State<HomePage> {
                               arguments: e,
                             );
                           },
-                          child: Card(
-                            elevation: 5,
-                            shape: Border.all(),
-                            shadowColor: Colors.grey,
-                            child: Image(
-                              image: NetworkImage(e.image),
-                              fit: BoxFit.fill,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                              image: DecorationImage(
+                                  image: NetworkImage(e.image),
+                                  fit: BoxFit.fill),
                             ),
                           ),
                         ),

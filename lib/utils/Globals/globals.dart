@@ -20,6 +20,7 @@ class Globals {
   bool img = false;
   bool border = false;
   String text = "";
+  final myController = TextEditingController();
   List<Color> allColors = [
     Colors.transparent,
     Colors.white,

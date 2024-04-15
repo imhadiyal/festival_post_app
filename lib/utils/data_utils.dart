@@ -155,7 +155,7 @@ Map<String, dynamic> allFestival = {
       "description":
           "Janmashtami celebrates the birth of Lord Krishna, the eighth avatar of Lord Vishnu. It is observed with fasting, singing devotional songs, and reenacting scenes from Krishna's life, such as the Dahi Handi ceremony.",
       "image":
-          "https://m.media-amazon.com/images/I/71CnlyxTLJL._AC_UF1000,1000_QL80_.jpg",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBQb_yNYNQWPw3VrfYh_bNeWXBZBHkCm-liw&usqp=CAU",
       "frame": [
         '${imgurl}Janmashtami1.png',
         '${imgurl}Janmashtami2.png',

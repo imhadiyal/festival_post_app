@@ -1,6 +1,11 @@
 import 'package:festival_post_app/headers.dart';
 import 'dart:ui' as ui;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
@@ -18,7 +23,6 @@ class _DetailPageState extends State<DetailPage> {
   GlobalKey colour = GlobalKey();
   GlobalKey Alige = GlobalKey();
   bool text = false;
-  late var myController = TextEditingController();
 
   Future<File> getFileFromWidget() async {
     RenderRepaintBoundary boundary =
@@ -43,9 +47,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     Globals.instance.reset();
-    myController.addListener(() {
-      myController.text;
-    });
+    Globals.instance.myController.text;
     super.initState();
   }
 
@@ -57,11 +59,11 @@ class _DetailPageState extends State<DetailPage> {
     return EyeDrop(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue.shade300,
-          centerTitle: true,
+          backgroundColor: Colors.blue.shade200,
           title: Text(
             data.name,
-            style: GoogleFonts.aladin(textStyle: const TextStyle(fontSize: 30)),
+            style: GoogleFonts.abyssinicaSil(
+                textStyle: const TextStyle(fontSize: 29)),
           ),
           actions: [
             IconButton(
@@ -128,6 +130,7 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ],
         ),
+        backgroundColor: Colors.blue.shade100,
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(children: [
@@ -212,32 +215,43 @@ class _DetailPageState extends State<DetailPage> {
                     Visibility(
                       visible: Globals.instance.border,
                       child: Positioned(
-                        bottom: 1,
+                        bottom: 3,
+                        right: 1,
                         child: Container(
-                          height: size.height * 0.085,
-                          width: size.width * 2,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              myController.text,
-                              style: const TextStyle(
-                                color: Colors.blue,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.start,
+                          padding: EdgeInsets.all(1),
+                          height: size.height * 0.025,
+                          width: size.width * 0.6,
+                          decoration: const BoxDecoration(
+                            color: Colors.white12,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
                             ),
+                          ),
+                          child: Text(
+                            Globals.instance.myController.text,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.start,
                           ),
                         ),
                       ),
                     ),
+                    // Container(
+                    //   child: Text(
+                    //     Globals.instance.myController.text,
+                    //     style: TextStyle(fontSize: 19),
+                    //   ),
+                    // ),
                     Visibility(
                       visible: Globals.instance.img,
                       child: Positioned(
                         bottom: 3,
                         right: 1,
                         child: SizedBox(
-                          height: size.height * 0.08,
+                          height: size.height * 0.09,
                           width: size.width * 0.2,
                           child: CircleAvatar(
                             foregroundImage: Globals.instance.image != null
@@ -528,33 +542,33 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                       ],
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     const Text(
-                    //       "Border",
-                    //       style: TextStyle(
-                    //           fontSize: 16, fontWeight: FontWeight.bold),
-                    //     ),
-                    //     Switch(
-                    //       value: Globals.instance.border,
-                    //       onChanged: (val) {
-                    //         Globals.instance.border = val;
-                    //         setState(() {});
-                    //       },
-                    //     ),
-                    //   ],
-                    // ),
-                    // Visibility(
-                    //   visible: Globals.instance.border,
-                    //   child: TextFormField(
-                    //     onChanged: (val) {
-                    //       myController = val as TextEditingController;
-                    //       setState(() {});
-                    //     },
-                    //     controller: myController,
-                    //   ),
-                    // )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Border",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        Switch(
+                          value: Globals.instance.border,
+                          onChanged: (val) {
+                            Globals.instance.border = val;
+                            setState(() {});
+                          },
+                        ),
+                      ],
+                    ),
+                    Visibility(
+                      visible: Globals.instance.border,
+                      child: TextFormField(
+                        onChanged: (val) {
+                          Globals.instance.myController.text = val;
+                          setState(() {});
+                        },
+                        controller: Globals.instance.myController,
+                      ),
+                    )
                   ],
                 ),
               ),
