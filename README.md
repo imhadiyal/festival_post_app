@@ -36,14 +36,16 @@ Welcome to **Festival Post Maker**, your ultimate companion for creating stunnin
 
 ### Images
 
+
+
 <img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/26263d78-b1a5-4d31-b851-c25cb92ebebf" width = "250">
 <img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/01e94e44-a3ce-4d60-b8d6-243307758387" width = "250">
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/e022b75c-8105-4eb0-b81c-9b0b2c32db76" width = "250">
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/ca66f701-d867-45f6-bd92-ba2d81df4fef" width = "250">
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/fc498915-c98f-4bbc-834e-d2c937e463da" width = "250">
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/fc85f9ec-c62e-4217-a7dd-dc79afd2ac76" width = "250">
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/60303c3c-bb0b-4dff-8bc7-27ed75e4b72e" width = "250">
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/b1d3533a-2287-48f7-8d09-2532aad33495" width = "250">
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/80b42f45-4a2d-4958-80ad-4dae6408ce3d" width = "250">
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/4e467ae6-43bd-4c73-a54f-2dce8787b1d0" width = "250">
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/d650a579-e3b1-4470-8714-767c5c21df4b" width = "250">
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/71ede039-051d-4da8-9bee-c29a596bb2c1" width = "250">
 <img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/83ad4fb3-f7a2-4d4c-9692-49df0dc0b094" width = "250">
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/d8b11c60-c6df-45d1-ac92-3e8753140a5b" width = "250">
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/ba2cbbe2-e7f4-4a43-b8e2-8176a339d591" width = "250">
 <img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/7877d4a2-10a0-4e03-a76c-5ad8629705cc" width = "250">
-<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/76ccdc10-a256-41d5-98c8-c80bc6865ebb" width = "250">
+<img src = "https://github.com/imhadiyal/festival_post_app/assets/146731392/c4d3d3f3-2a6f-4e22-80cd-0d1a081e2ebd" width = "250">
