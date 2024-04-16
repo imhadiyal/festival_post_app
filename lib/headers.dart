@@ -9,7 +9,6 @@ export 'package:cyclop/cyclop.dart';
 export 'package:festival_post_app/headers.dart';
 export 'package:festival_post_app/modal/modal_class.dart';
 export 'package:festival_post_app/utils/Globals/globals.dart';
-export 'package:flutter/material.dart';
 export 'package:flutter/painting.dart';
 export 'package:flutter/rendering.dart';
 export 'package:flutter/services.dart';
@@ -21,6 +20,4 @@ export 'package:path_provider/path_provider.dart';
 export 'package:share_extend/share_extend.dart';
 export 'package:carousel_slider/carousel_slider.dart';
 export 'package:festival_post_app/utils/data_utils.dart';
-
-export 'package:flutter/material.dart';
 export 'package:flutter/widgets.dart';
